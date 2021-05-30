@@ -33,10 +33,11 @@ async function onMessageHandler(target, context, msg, self) {
       const link = await inviteChannel.createInvite({
         maxAge: 86400,
         maxUses: 1,
+        unique: true,
         reason: `Generated from twitch via ${context.username}`
       })
       twitch.say(target, `Here's your discord link! It only has one use and expires after 24 hours. ${link.url}`)
-      console.log(`Generated invite ${link.addr} for ${context.username}`);
+      console.log(`Generated invite ${link.code} for ${context.username}`);
     } catch (e) {
       console.error(e);
       twitch.say(target, "Something went wrong processing your request. Check error logs for more info.")
